@@ -4,6 +4,15 @@ A compact, portable network traffic monitoring device built around a Raspberry P
 
 > PES University, Bangalore — Software Engineering Mini-Project (Jackfruit Phase-1), **Group 4**
 
+## Team (Group 4)
+
+| Name | USN | SRN / PRN |
+|------|-----|-----------|
+| Ankita S | PES1UG24CS066 | PES1202402282 |
+| Anusha Gupta | PES1UG24CS073 | PES1202402250 |
+| Charan M | PES1UG24CS125 | PES1202400244 |
+| Vaghasiya Akshar Arvindbhai | PES1UG25CS852 | PES1202503586 |
+
 ## Why this project?
 
 Inspecting live traffic usually means setting up a laptop with Wireshark or tcpdump, which is inconvenient for quick checks in a lab, a small audit, or IoT/embedded debugging. Pocket Packet Sniffer lets a student or junior network technician carry a small device to a network point, start a capture, and get an immediate readable summary of what is happening on that segment.
@@ -111,14 +120,7 @@ Key targets:
 - Software Test Plan (STP) v1.0
 - Software Architecture and Design Specification (SAD) v1.0
 
-## Team (Group 4)
 
-| Name | USN | SRN / PRN |
-|------|-----|-----------|
-| Ankita S | PES1UG24CS066 | PES1202402282 |
-| Anusha Gupta | PES1UG24CS073 | PES1202402250 |
-| Charan M | PES1UG24CS125 | PES1202400244 |
-| Vaghasiya Akshar Arvindbhai | PES1UG25CS852 | PES1202503586 |
 
 ## Responsible use
 
