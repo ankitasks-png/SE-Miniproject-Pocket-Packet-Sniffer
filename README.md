@@ -1,6 +1,6 @@
 # SE-Miniproject-Pocket-Packet-Sniffer
 
-A compact, portable network traffic monitoring device built around a Raspberry Pi. It captures live packets from a chosen interface, analyses them with [Zeek](https://zeek.org), and shows a simple, readable summary and basic suspicious-activity alerts through a lightweight Python interface. Sessions are stored locally and can be exported for deeper analysis (e.g. in Wireshark).
+A compact, portable network traffic monitoring device built around a Raspberry Pi. It captures live packets from a chosen interface, analyses them with [Zeek](https://zeek.org), and shows a simple, readable summary and basic suspicious-activity alerts through a lightweight Python interface. Sessions are store locally and can be exported for deeper analysis (e.g. in Wireshark).
 
 > PES University, Bangalore — Software Engineering Mini-Project (Jackfruit Phase-1), **Group 4**
 
