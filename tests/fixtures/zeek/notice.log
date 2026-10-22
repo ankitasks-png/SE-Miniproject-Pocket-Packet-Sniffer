@@ -1,0 +1,5 @@
+#separator \x09
+#path notice
+#fields	ts	uid	note	msg	src	dst	p
+1790000003.000001	N1	Scan::Port_Scan	Example Zeek scan notice from synthetic test data	198.51.100.44	192.0.2.10	22
+1790000004.000001	N2	Example::Informational	Synthetic informational notice	192.0.2.10	198.51.100.44	80
