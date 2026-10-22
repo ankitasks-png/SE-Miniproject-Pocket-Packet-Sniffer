@@ -125,3 +125,18 @@ Key targets:
 ## Responsible use
 
 Capture traffic only on networks you own or have explicit permission to monitor. Captured data may contain sensitive information; handle and share exported sessions accordingly.
+
+## Sprint 1 MVP: local Zeek-log report
+
+The initial runnable slice reads local Zeek `conn.log` and `notice.log` files. It displays connection totals, protocol counts, top talkers, and prioritized notices. Alerts are generated only from notices Zeek has already emitted; port-scan notice types receive `HIGH` priority and other notices default to `LOW`. The tool does not generate traffic, probe a network, or capture live traffic in this MVP.
+
+Install and run the sample report:
+
+```shell
+python -m pip install -e ".[dev]"
+python -m pocket_sniffer --log-dir tests/fixtures/zeek
+```
+
+Use `--no-alerts` to suppress the alert list and `--top 3` to limit the top-talker display. For authorized offline analysis, point `--log-dir` at a directory containing Zeek logs. This MVP is a testable analysis slice; live interface selection, capture control, and end-to-end PCAP-to-Zeek orchestration remain follow-up work.
+
+GitHub Actions runs the automated tests and an 80% coverage gate on pushes and pull requests.
