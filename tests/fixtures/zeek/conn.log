@@ -1,0 +1,6 @@
+#separator \x09
+#path conn
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	proto	service	duration	orig_bytes	resp_bytes
+1790000000.000001	C1	192.0.2.10	51514	198.51.100.20	443	tcp	ssl	1.2	1200	8400
+1790000001.000002	C2	192.0.2.11	51515	198.51.100.20	443	tcp	ssl	0.8	900	3200
+1790000002.000003	C3	192.0.2.10	5353	198.51.100.53	53	udp	dns	0.1	80	160
