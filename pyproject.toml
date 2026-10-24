@@ -13,6 +13,7 @@ dependencies = []
 [project.scripts]
 pocket-sniffer = "pocket_sniffer.cli:main"
 pocket-sniffer-sessions = "pocket_sniffer.session_cli:main"
+pocket-sniffer-pcap = "pocket_sniffer.pcap_cli:main"
 
 [project.optional-dependencies]
 dev = ["pytest>=8.0", "pytest-cov>=5.0"]
