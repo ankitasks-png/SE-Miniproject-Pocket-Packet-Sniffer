@@ -6,3 +6,9 @@ htmlcov/
 .venv/
 venv/
 *.egg-info/
+# Generated packet captures
+*.pcap
+*.pcapng
+
+# Local session index
+*.sqlite3
