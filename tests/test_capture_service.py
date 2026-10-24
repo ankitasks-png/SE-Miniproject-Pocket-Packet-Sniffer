@@ -89,3 +89,70 @@ def test_immediate_zeek_failure_includes_stderr(tmp_path):
         capture = ZeekCapture("bad0", tmp_path, zeek_path="/usr/bin/zeek")
         with pytest.raises(CaptureError, match="unknown interface"):
             capture.start()
+
+
+
+def test_capture_cli_success(tmp_path):
+    from unittest.mock import MagicMock, patch
+    from pocket_sniffer.capture import main
+
+    fake_capture = MagicMock()
+    fake_capture.output_dir = tmp_path
+    fake_capture.process.poll.side_effect = [None, 0]
+    fake_capture.stop.return_value = 0
+    fake_capture.last_stderr = ""
+
+    (tmp_path / "conn.log").write_text("sample log\n")
+
+    with patch("pocket_sniffer.capture.ZeekCapture", return_value=fake_capture), \
+         patch("pocket_sniffer.capture.time.sleep"):
+        result = main([
+            "--interface", "en0",
+            "--output-dir", str(tmp_path),
+        ])
+
+    assert result == 0
+    fake_capture.start.assert_called_once()
+    fake_capture.stop.assert_called_once()
+
+
+def test_capture_cli_start_error(tmp_path):
+    from unittest.mock import patch
+    from pocket_sniffer.capture import main
+    from pocket_sniffer.services.capture_service import CaptureError
+
+    with patch(
+        "pocket_sniffer.capture.ZeekCapture"
+    ) as capture_class:
+        capture_class.return_value.start.side_effect = CaptureError(
+            "Zeek unavailable"
+        )
+
+        result = main([
+            "--interface", "en0",
+            "--output-dir", str(tmp_path),
+        ])
+
+    assert result == 2
+
+
+def test_capture_cli_reports_unexpected_exit(tmp_path):
+    from unittest.mock import MagicMock, patch
+    from pocket_sniffer.capture import main
+
+    fake_capture = MagicMock()
+    fake_capture.output_dir = tmp_path
+    fake_capture.process.poll.return_value = 1
+    fake_capture.stop.return_value = 1
+    fake_capture.last_stderr = "capture failed"
+
+    with patch(
+        "pocket_sniffer.capture.ZeekCapture",
+        return_value=fake_capture,
+    ):
+        result = main([
+            "--interface", "en0",
+            "--output-dir", str(tmp_path),
+        ])
+
+    assert result == 1
