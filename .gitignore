@@ -9,6 +9,5 @@ venv/
 # Generated packet captures
 *.pcap
 *.pcapng
-
 # Local session index
 *.sqlite3

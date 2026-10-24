@@ -182,3 +182,39 @@ pocket-sniffer-sessions --database ./sessions.sqlite3 list
 ```
 
 The session index stores references to local session folders; it does not copy capture files or upload them anywhere.
+
+## Session Export: PCAP Files and Zeek Logs
+
+Pocket Packet Sniffer supports exporting selected capture files and Zeek logs to a destination directory for offline analysis.
+
+### Export all supported files
+
+```bash
+pocket-sniffer-export \
+  --session-dir /path/to/session \
+  --destination /path/to/export
+```
+
+### Export only PCAP files
+
+```bash
+pocket-sniffer-export \
+  --session-dir /path/to/session \
+  --destination /path/to/export \
+  --type pcap
+```
+
+### Export only Zeek logs
+
+```bash
+pocket-sniffer-export \
+  --session-dir /path/to/session \
+  --destination /path/to/export \
+  --type zeek
+```
+
+### Overwrite existing files
+
+By default, the command refuses to replace files already present at the destination. To explicitly allow overwriting matching filenames, add `--overwrite`.
+
+The exporter copies supported files into the chosen destination and leaves the original session files unchanged. Exported files may contain sensitive network data; share them only with authorized recipients.
