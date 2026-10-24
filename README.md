@@ -140,3 +140,45 @@ python -m pocket_sniffer --log-dir tests/fixtures/zeek
 Use `--no-alerts` to suppress the alert list and `--top 3` to limit the top-talker display. For authorized offline analysis, point `--log-dir` at a directory containing Zeek logs. This MVP is a testable analysis slice; live interface selection, capture control, and end-to-end PCAP-to-Zeek orchestration remain follow-up work.
 
 GitHub Actions runs the automated tests and an 80% coverage gate on pushes and pull requests.
+
+## Session History: Browse and Select Saved Sessions
+
+Pocket Packet Sniffer provides a local SQLite index for browsing previously saved packet-capture sessions. Sessions can be indexed from folders containing `.pcap`, `.pcapng`, or supported Zeek log files.
+
+### 1. Index a saved session
+
+```bash
+pocket-sniffer-sessions index /path/to/session
+```
+
+Replace `/path/to/session` with the actual path to a folder containing a saved capture or supported Zeek log file.
+
+### 2. Browse indexed sessions
+
+```bash
+pocket-sniffer-sessions list
+```
+
+This displays each indexed session's ID, name, timestamp, and directory path.
+
+### 3. Select a session
+
+```bash
+pocket-sniffer-sessions show 1
+```
+
+Replace `1` with the ID displayed by the list command. The command displays the selected session's path and available files.
+
+### Session index location
+
+By default, the SQLite database is stored at:
+
+`~/.pocket_packet_sniffer/sessions.sqlite3`
+
+To use a different database location, supply `--database` before the subcommand:
+
+```bash
+pocket-sniffer-sessions --database ./sessions.sqlite3 list
+```
+
+The session index stores references to local session folders; it does not copy capture files or upload them anywhere.
