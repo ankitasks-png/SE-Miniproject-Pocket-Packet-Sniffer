@@ -140,3 +140,39 @@ python -m pocket_sniffer --log-dir tests/fixtures/zeek
 Use `--no-alerts` to suppress the alert list and `--top 3` to limit the top-talker display. For authorized offline analysis, point `--log-dir` at a directory containing Zeek logs. This MVP is a testable analysis slice; live interface selection, capture control, and end-to-end PCAP-to-Zeek orchestration remain follow-up work.
 
 GitHub Actions runs the automated tests and an 80% coverage gate on pushes and pull requests.
+
+## Session Export: PCAP Files and Zeek Logs
+
+Pocket Packet Sniffer supports exporting selected capture files and Zeek logs to a destination directory for offline analysis.
+
+### Export all supported files
+
+```bash
+pocket-sniffer-export \
+  --session-dir /path/to/session \
+  --destination /path/to/export
+```
+
+### Export only PCAP files
+
+```bash
+pocket-sniffer-export \
+  --session-dir /path/to/session \
+  --destination /path/to/export \
+  --type pcap
+```
+
+### Export only Zeek logs
+
+```bash
+pocket-sniffer-export \
+  --session-dir /path/to/session \
+  --destination /path/to/export \
+  --type zeek
+```
+
+### Overwrite existing files
+
+By default, the command refuses to replace files already present at the destination. To explicitly allow overwriting matching filenames, add `--overwrite`.
+
+The exporter copies supported files into the chosen destination and leaves the original session files unchanged. Exported files may contain sensitive network data; share them only with authorized recipients.
