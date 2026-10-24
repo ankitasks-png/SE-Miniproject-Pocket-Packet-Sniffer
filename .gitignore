@@ -6,3 +6,6 @@ htmlcov/
 .venv/
 venv/
 *.egg-info/
+# Generated packet captures
+*.pcap
+*.pcapng
